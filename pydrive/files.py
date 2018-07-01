@@ -533,7 +533,7 @@ class GoogleDriveFile(ApiAttributeMixin, ApiResource):
     :returns: str -- content of downloaded file in string.
     :raises: ApiRequestError
     """
-    resp, content = self.http.request(url)
+    resp, content = self.http.request(url, headers={'Connection': 'close'})
     if resp.status != 200:
       raise ApiRequestError('Cannot download file: %s' % resp)
     return content
